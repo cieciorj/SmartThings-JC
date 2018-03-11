@@ -18,6 +18,7 @@
  *
  * 	Version:
  *    	- 1.0: Initial Release (3/10/2018)
+ *		- 1.1: Fixed Color Change by Saturation/Hue (3/11/2018)
  *
  * 	Known Issues:
  *   	- Factory reset not working
@@ -289,7 +290,7 @@ def setColor(value) {
 		if(hue == null) hue = 13
 		if(saturation == null) saturation = 13
 		def rgb = huesatToRGB(hue, saturation)
-		result << zwave.switchColorV3.switchColorSet(red: rgb[0], green: rgb[1], blue: rgb[2], warmWhite:0, coldWhite:0)
+		result << zwave.switchColorV3.switchColorSet(red: rgb[0], green: rgb[1], blue: rgb[2], warmWhite:0, coldWhite:0).format()
 	}
 
 	if(value.hue) sendEvent(name: "hue", value: value.hue)
